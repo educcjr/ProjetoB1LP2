@@ -5,14 +5,15 @@ import java.io.FileReader;
 
 public class FileTXT extends File {
 	
+	@Override
 	public void readFile() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(super.name));
 			
 			String line = reader.readLine();
 			while(line != null) {
-				// TODO: replace punctuation
-				String[] words = line.split(" ");
+				String nLine = line.replaceAll("\\p{P}","").toLowerCase();
+				String[] words = nLine.split(" ");
 				for (int i = 0; i < words.length; i++ ) {
 					System.out.println(words[i]);
 				}
@@ -26,10 +27,12 @@ public class FileTXT extends File {
 		}
 	}
 	
+	@Override
 	public String getName() {
 		return super.name;
 	}
 	
+	@Override
 	public void setName(String name) {
 		super.name = name;
 	}
