@@ -8,12 +8,11 @@ public class FileTXT extends File {
 	@Override
 	public void readFile() {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(super.name));
+			BufferedReader reader = new BufferedReader(new FileReader(super.getName()));
 
 			String line = reader.readLine();
 			while(line != null) {
-				String nLine = line.replaceAll("\\p{P}","").toLowerCase();
-				String[] words = nLine.split(" ");
+				String[] words = super.getWords(line);
 				for (String word : words) {
 					System.out.println(word);
 				}
@@ -22,18 +21,8 @@ public class FileTXT extends File {
 
 			reader.close();
 		}
-		catch (Exception ex) {
-			ex.printStackTrace();
+		catch(Exception e) {
+			System.out.println("File not found: " + super.getName());
 		}
-	}
-	
-	@Override
-	public String getName() {
-		return super.name;
-	}
-	
-	@Override
-	public void setName(String name) {
-		super.name = name;
 	}
 }

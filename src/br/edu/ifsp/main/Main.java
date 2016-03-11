@@ -2,10 +2,19 @@ package br.edu.ifsp.main;
 
 import br.edu.ifsp.file.File;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 	
 	public static void main(String[] args) {
-		File file = File.createFile("files\\sample.txt");
-		file.readFile();
+		List<File> files = new ArrayList<>();
+		files.add(File.createFile("files\\sample.txt"));
+		files.add(File.createFile("files\\sample.pdf"));
+
+		files.stream().forEach(f -> { if(f != null) {
+			f.readFile();
+			System.out.println();
+		}});
 	}
 }
