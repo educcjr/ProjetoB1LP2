@@ -9,13 +9,13 @@ public class FileTXT extends File {
 	public void readFile() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(super.name));
-			
+
 			String line = reader.readLine();
 			while(line != null) {
 				String nLine = line.replaceAll("\\p{P}","").toLowerCase();
 				String[] words = nLine.split(" ");
-				for (int i = 0; i < words.length; i++ ) {
-					System.out.println(words[i]);
+				for (String word : words) {
+					System.out.println(word);
 				}
 				line = reader.readLine();
 			}
@@ -23,7 +23,7 @@ public class FileTXT extends File {
 			reader.close();
 		}
 		catch (Exception ex) {
-			System.out.println(ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
 	

@@ -9,8 +9,7 @@ public class FilePDF extends File {
 	@Override
 	public void readFile() {
 		try {
-		    PDDocument document = null; 
-		    document = PDDocument.load(new java.io.File("test.pdf"));
+		    PDDocument document = PDDocument.load(new java.io.File(super.name));
 		    document.getClass();
 		    
 		    if(!document.isEncrypted()) {
