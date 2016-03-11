@@ -21,7 +21,6 @@ public abstract class File {
 	public static File createFile(String name) {
 		File file;
 		String ext = name.split("\\.")[1];
-
 		switch (ext) {
 			case "txt":
 				file = new FileTXT();
@@ -31,13 +30,22 @@ public abstract class File {
 				file = new FilePDF();
 				file.setName(name);
 				return file;
+			case "docx":
+				file = new FileDOCX();
+				file.setName(name);
+				return file;
 		}
-		
 		return null;
 	}
 
-	public String[] getWords(String line) {
-		line = line.replaceAll("\\p{P}","").toLowerCase();
-		return Util.trimStringArray(line.split("[\\s\\xA0]+"));
+	public void putWordsToMap(String[] words) {
+		for (String word : words) {
+			System.out.println(word);
+		}
+	}
+
+	public String[] getWords(String text) {
+		text = text.replaceAll("\\p{P}","").toLowerCase();
+		return Util.trimStringArray(text.split("[\\s\\xA0]+"));
 	}
 }

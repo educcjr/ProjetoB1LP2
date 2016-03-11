@@ -9,16 +9,12 @@ public class FileTXT extends File {
 	public void readFile() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(super.getName()));
-
-			String line = reader.readLine();
-			while(line != null) {
+			String line;
+			while ((line = reader.readLine()) != null) {
 				String[] words = super.getWords(line);
-				for (String word : words) {
-					System.out.println(word);
-				}
-				line = reader.readLine();
-			}
+				this.putWordsToMap(words);
 
+			}
 			reader.close();
 		}
 		catch(Exception e) {

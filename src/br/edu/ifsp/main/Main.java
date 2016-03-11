@@ -11,6 +11,7 @@ public class Main {
 		List<File> files = new ArrayList<>();
 		files.add(File.createFile("files\\sample.txt"));
 		files.add(File.createFile("files\\sample.pdf"));
+		files.add(File.createFile("files\\sample.docx"));
 
 		files.stream().forEach(f -> { if(f != null) {
 			f.readFile();

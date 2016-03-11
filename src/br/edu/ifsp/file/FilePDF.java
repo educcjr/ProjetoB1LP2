@@ -9,17 +9,11 @@ public class FilePDF extends File {
 	public void readFile() {
 		try {
 		    PDDocument document = PDDocument.load(new java.io.File(super.getName()));
-		    
 		    if(!document.isEncrypted()) {
 		        PDFTextStripper stripper = new PDFTextStripper();
 		        String text = stripper.getText(document);
-				String[] lines = text.split(stripper.getLineSeparator());
-				for (String line : lines) {
-					String[] words = getWords(line);
-					for (String word : words) {
-						System.out.println(word);
-					}
-				}
+				String[] words = getWords(text);
+				this.putWordsToMap(words);
 		    }
 	    }
 		catch(Exception e) {
