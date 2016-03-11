@@ -26,5 +26,4 @@ public class FilePDF extends File {
 			System.out.println("File not found: " + super.getName());
 	    }
 	}
-	
 }

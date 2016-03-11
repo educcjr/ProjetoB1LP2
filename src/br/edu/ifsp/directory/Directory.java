@@ -2,10 +2,6 @@ package br.edu.ifsp.directory;
 
 public class Directory {
 	private String name;
-
-	public Directory() {
-		name = "teste";
-	}
 	
 	@Override
 	public int hashCode() {
