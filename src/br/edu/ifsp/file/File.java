@@ -41,6 +41,13 @@ public abstract class File {
 	public void putWordsToMap(String[] words) {
 		for (String word : words) {
 			System.out.println(word);
+
+			if(this.words.containsKey(word)) {
+				this.words.replace(word, this.words.get(word) + 1);
+			}
+			else {
+				this.words.put(word, 1);
+			}
 		}
 	}
 
