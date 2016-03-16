@@ -17,7 +17,7 @@ public class FilePDF extends File {
 		    }
 	    }
 		catch(Exception e) {
-			System.out.println("File not found: " + super.getPath());
+			e.printStackTrace();
 	    }
 	}
 }

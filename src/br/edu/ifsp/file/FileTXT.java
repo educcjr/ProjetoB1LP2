@@ -17,7 +17,7 @@ public class FileTXT extends File {
 			reader.close();
 		}
 		catch(Exception e) {
-			System.out.println("File not found: " + super.getPath());
+			e.printStackTrace();
 		}
 	}
 }

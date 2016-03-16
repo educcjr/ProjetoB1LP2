@@ -17,7 +17,7 @@ public class FileDOCX extends File {
             super.putWordsToMap(words);
         }
         catch (Exception e) {
-            System.out.println("File not found: " + super.getPath());
+            e.printStackTrace();
         }
     }
 }

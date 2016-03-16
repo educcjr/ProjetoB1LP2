@@ -43,7 +43,6 @@ public class MainController {
             reader.close();
         }
         catch(Exception e) {
-            System.out.println("File not found: " + path);
             e.printStackTrace();
         }
     }
