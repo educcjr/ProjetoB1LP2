@@ -6,7 +6,7 @@ public class Main {
 	
 	public static void main(String[] args) {
         MainController controller = new MainController();
-        controller.readInitialInput("C:\\Users\\Duds\\Desktop\\initial.txt");
+        controller.readInitialInput("files\\initial.txt");
         for (Directory directory : controller.getDirectoryList()) {
             directory.getSubFiles();
             directory.getFileList().forEach(f -> {
