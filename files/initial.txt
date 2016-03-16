@@ -1,0 +1,2 @@
+C:\Users\Duds\Desktop\files2 {txt,N;pdf,N}
+C:\Users\Duds\Desktop\files1 {docx,N}
