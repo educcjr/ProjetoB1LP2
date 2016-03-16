@@ -8,17 +8,16 @@ public class FileTXT extends File {
 	@Override
 	public void readFile() {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(super.getName()));
+			BufferedReader reader = new BufferedReader(new FileReader(super.getPath()));
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] words = super.getWords(line);
-				this.putWordsToMap(words);
-
+				super.putWordsToMap(words);
 			}
 			reader.close();
 		}
 		catch(Exception e) {
-			System.out.println("File not found: " + super.getName());
+			System.out.println("File not found: " + super.getPath());
 		}
 	}
 }

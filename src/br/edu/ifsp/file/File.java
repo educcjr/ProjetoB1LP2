@@ -6,33 +6,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class File {
-	private String name;
-	private Map<String, Integer> words = new HashMap<>();
+	private String path;
+	private Map<String, Integer> wordMap = new HashMap<>();
 	
 	public abstract void readFile();
 
-	public String getName() {
-		return this.name;
+	public String getPath() {
+		return this.path;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setPath(String path) {
+		this.path = path;
 	}
 	
-	public static File createFile(String name) {
+	public static File createFile(String path) {
 		File file;
-		String ext = name.split("\\.")[1];
+		String ext = Util.getExtension(path);
 		switch (ext) {
 			case "txt":
 				file = new FileTXT();
-				file.setName(name);
+				file.setPath(path);
 				return file;
 			case "pdf":
 				file = new FilePDF();
-				file.setName(name);
+				file.setPath(path);
 				return file;
 			case "docx":
 				file = new FileDOCX();
-				file.setName(name);
+				file.setPath(path);
 				return file;
 		}
 		return null;
@@ -40,16 +40,18 @@ public abstract class File {
 
 	public void putWordsToMap(String[] words) {
 		for (String word : words) {
-			System.out.println(word);
-
-			if(this.words.containsKey(word)) {
-				this.words.replace(word, this.words.get(word) + 1);
+			if(this.wordMap.containsKey(word)) {
+				this.wordMap.replace(word, this.wordMap.get(word) + 1);
 			}
 			else {
-				this.words.put(word, 1);
+				this.wordMap.put(word, 1);
 			}
 		}
 	}
+
+    public void printMap() {
+        this.wordMap.entrySet().forEach(entry -> System.out.println(entry.getKey() + ", " + entry.getValue()));
+    }
 
 	public String[] getWords(String text) {
 		text = text.replaceAll("\\p{P}","").toLowerCase();

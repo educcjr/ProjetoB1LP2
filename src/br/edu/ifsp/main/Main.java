@@ -1,21 +1,21 @@
 package br.edu.ifsp.main;
 
-import br.edu.ifsp.file.File;
-
-import java.util.ArrayList;
-import java.util.List;
+import br.edu.ifsp.directory.Directory;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		List<File> files = new ArrayList<>();
-		files.add(File.createFile("files\\sample.txt"));
-		files.add(File.createFile("files\\sample.pdf"));
-		files.add(File.createFile("files\\sample.docx"));
-
-		files.stream().forEach(f -> { if(f != null) {
-			f.readFile();
-			System.out.println();
-		}});
+        MainController controller = new MainController();
+        controller.readInitialInput("C:\\Users\\Duds\\Desktop\\initial.txt");
+        for (Directory directory : controller.getDirectoryList()) {
+            directory.getSubFiles();
+            directory.getFileList().forEach(f -> {
+                if(f != null) {
+                    f.readFile();
+                    f.printMap();
+                    System.out.println();
+                }
+            });
+        }
 	}
 }

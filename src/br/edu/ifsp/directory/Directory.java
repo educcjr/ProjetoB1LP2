@@ -1,30 +1,53 @@
 package br.edu.ifsp.directory;
 
-public class Directory {
-	private String name;
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
+import br.edu.ifsp.file.File;
+import br.edu.ifsp.util.Util;
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Directory other = (Directory) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
-	}
+import java.util.ArrayList;
+import java.util.List;
+
+public class Directory {
+	private String path;
+    private Extension[] extensions;
+    private List<File> fileList;
+
+    public Directory(String path, Extension[] extensions) {
+        this.path = path;
+        this.extensions = extensions;
+        fileList = new ArrayList<>();
+    }
+
+    public List<File> getFileList() {
+        return this.fileList;
+    }
+
+    public void getSubFiles() {
+        List<String> directoryQueue = new ArrayList<>();
+        directoryQueue.add(this.path);
+        while (directoryQueue.size() > 0) {
+            java.io.File file = new java.io.File(directoryQueue.get(0));
+            java.io.File[] subFiles = file.listFiles();
+            if (subFiles != null) {
+                for (java.io.File subFile : subFiles) {
+                    if (subFile.isFile()) {
+                        if (verifyExtension(Util.getExtension(subFile.getAbsolutePath()))) {
+                            fileList.add(File.createFile(subFile.getAbsolutePath()));
+                        }
+                    } else if (subFile.isDirectory()) {
+                        directoryQueue.add(subFile.getAbsolutePath());
+                    }
+                }
+            }
+            directoryQueue.remove(0);
+        }
+    }
+
+    public boolean verifyExtension(String extension) {
+        for (Extension ext : extensions) {
+            if (ext.getName().equals(extension)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

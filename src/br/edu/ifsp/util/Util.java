@@ -11,4 +11,8 @@ public class Util {
         }
         return newArray;
     }
+
+    public static String getExtension(String path) {
+        return path.split("\\.")[1];
+    }
 }
