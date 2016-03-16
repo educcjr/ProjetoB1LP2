@@ -21,6 +21,7 @@ public class MainController {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             this.directoryList = new Directory[((Long) reader.lines().count()).intValue()];
+            reader.close();
             reader = new BufferedReader(new FileReader(path));
             String line;
             int i = 0;
