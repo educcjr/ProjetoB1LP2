@@ -34,6 +34,10 @@ public abstract class File {
 				file = new FileDOCX();
 				file.setPath(path);
 				return file;
+			case "doc":
+				file = new FileDOC();
+				file.setPath(path);
+				return file;
 		}
 		return null;
 	}

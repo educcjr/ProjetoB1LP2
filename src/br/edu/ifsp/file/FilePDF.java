@@ -15,6 +15,7 @@ public class FilePDF extends File {
 				String[] words = super.getWords(text);
 				super.putWordsToMap(words);
 		    }
+			document.close();
 	    }
 		catch(Exception e) {
 			e.printStackTrace();

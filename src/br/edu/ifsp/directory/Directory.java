@@ -1,13 +1,14 @@
 package br.edu.ifsp.directory;
 
 import br.edu.ifsp.file.File;
+import br.edu.ifsp.main.Main;
 import br.edu.ifsp.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Directory {
-	private String path;
+public class Directory implements Runnable {
+    private String path;
     private Extension[] extensions;
     private List<File> fileList;
 
@@ -22,6 +23,12 @@ public class Directory {
     }
 
     public void getSubFiles() {
+        Thread thread = new Thread(this);
+        Main.directoryThreadList.add(thread);
+        thread.start();
+    }
+
+    private void _getSubFiles() {
         List<String> directoryQueue = new ArrayList<>();
         directoryQueue.add(this.path);
         while (directoryQueue.size() > 0) {
@@ -49,5 +56,10 @@ public class Directory {
             }
         }
         return false;
+    }
+
+    @Override
+    public void run() {
+        _getSubFiles();
     }
 }
